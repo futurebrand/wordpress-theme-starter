@@ -1,4 +1,5 @@
 <header class="header">
+  <button type="button" class="header__toggle">open nav</button>
   <nav class="header-nav">
     <?php
       wp_nav_menu( array(

@@ -7,13 +7,11 @@ import Home from './views/home';
 class App {
   initialize() {
     this.oldCurTop = 0;
-    this.components = [new Header()];
+    this.components = [ new Header() ];
 
     this.setComponents();
     this.setViews();
     this.attachEvents();
-
-    this.render();
   }
 
   attachEvents() {}
