@@ -1,0 +1,15 @@
+/**
+ * Theme Name: Wordpress Theme Starter
+ * Author: Gerson Lima
+ * Author URI: https://gersonlima.dev
+ * Version: 1.0.0
+**/
+@import 'utils/variables';
+@import 'utils/functions';
+@import 'utils/media-queries';
+@import 'utils/reset';
+@import 'fonts';
+@import 'helpers/helpers';
+@import 'main';
+@import 'components/header';
+@import 'views/home';
