@@ -6,7 +6,7 @@
   "author": "Gerson Lima <gersonthiago.lima@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_ENV=development webpack --watch --mode development --config config/webpack.config.js",
+    "dev": "NODE_ENV=development webpack-dev-server --config config/webpack.config.js",
     "build": "NODE_ENV=production webpack --mode production --config config/webpack.config.js",
     "lint-staged": "lint-staged"
   },
