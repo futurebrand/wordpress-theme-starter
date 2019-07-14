@@ -25,13 +25,27 @@
     ]
   },
   "pre-commit": "lint-staged",
-  "browserslist": [
-    "last 2 versions",
-    ">1%"
-  ],
+  "browserslist": {
+    "production": [
+      "> 1% in AU",
+      "> 1% in JP",
+      "last 2 Chrome versions",
+      "last 2 Firefox versions",
+      "last 2 ChromeAndroid versions",
+      "last 2 Edge versions",
+      "last 2 iOS versions",
+      "last 2 Safari versions",
+      "not Explorer <= 11",
+      "not ExplorerMobile <= 11"
+    ],
+    "development": [
+      "last 1 Chrome version"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
+    "autoprefixer": "^9.6.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",

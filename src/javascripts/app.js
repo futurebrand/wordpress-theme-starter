@@ -7,14 +7,26 @@ import Home from './views/home';
 class App {
   initialize() {
     this.oldCurTop = 0;
-    this.components = [ new Header() ];
+    this.components = [new Header()];
 
     this.setComponents();
     this.setViews();
     this.attachEvents();
   }
 
-  attachEvents() {}
+  attachEvents() {
+    if (window.addEventListener) {
+      window.addEventListener('resize', this.handleResize.bind(this), true);
+    } else {
+      window.attachEvent('onresize', this.handleResize.bind(this));
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener('scroll', this.handleScroll.bind(this), true);
+    } else {
+      window.attachEvent('onscroll', this.handleScroll.bind(this));
+    }
+  }
 
   triggerResize() {
     if (typeof Event === 'function') {

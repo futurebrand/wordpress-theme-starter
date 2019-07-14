@@ -15,6 +15,8 @@ module.exports = {
   devServer: {
     publicPath:
       'http://localhost/example/wp-content/themes/wordpress-theme-starter',
+    contentBase: path.resolve(__dirname, '../src/'),
+    watchContentBase: true,
     port: 80
   },
   module: {
@@ -25,16 +27,28 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ '@babel/preset-env' ]
+            presets: ['@babel/preset-env']
           }
         }
       },
       {
         test: /\.scss$/,
-        use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: path.resolve(__dirname, '../postcss.config.js')
+              }
+            }
+          },
+          'sass-loader'
+        ]
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|otf|ttf|eot|woff)$/,
         use: [
           {
             loader: 'file-loader',
@@ -47,10 +61,15 @@ module.exports = {
   optimization: {
     minimizer:
       process.env.NODE_ENV === 'production'
-        ? [ new OptimizeCSSAssetsPlugin({}) ]
+        ? [new OptimizeCSSAssetsPlugin({})]
         : []
   },
   plugins: [
+    new webpack.NamedModulesPlugin(),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      config: JSON.stringify(require(`./${process.env.NODE_ENV}.json`))
+    }),
     new MiniCssExtractPlugin({ filename: 'style.css' }),
     new LiveReloadPlugin()
   ]
