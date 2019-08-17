@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -13,11 +14,14 @@ module.exports = {
     path: path.resolve(__dirname, '../build/')
   },
   devServer: {
-    publicPath:
-      'http://localhost/example/wp-content/themes/wordpress-theme-starter',
-    contentBase: path.resolve(__dirname, '../src/'),
+    hot: true,
+    port: '3000',
+    publicPath: '/build',
+    contentBase: path.resolve(__dirname, '../build/'),
     watchContentBase: true,
-    port: 80
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   },
   module: {
     rules: [
@@ -27,7 +31,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
+            presets: [ '@babel/preset-env' ]
           }
         }
       },
@@ -61,7 +65,7 @@ module.exports = {
   optimization: {
     minimizer:
       process.env.NODE_ENV === 'production'
-        ? [new OptimizeCSSAssetsPlugin({})]
+        ? [ new OptimizeCSSAssetsPlugin({}) ]
         : []
   },
   plugins: [
