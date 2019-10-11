@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
@@ -65,7 +66,7 @@ module.exports = {
   optimization: {
     minimizer:
       process.env.NODE_ENV === 'production'
-        ? [ new OptimizeCSSAssetsPlugin({}) ]
+        ? [ new OptimizeCSSAssetsPlugin({}), new TerserPlugin() ]
         : []
   },
   plugins: [
