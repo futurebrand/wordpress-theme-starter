@@ -1,3 +1,10 @@
+import './polyfill/foreach';
+import 'whatwg-fetch';
+import 'promise-polyfill/src/polyfill';
+import smoothscroll from 'smoothscroll-polyfill';
+
+smoothscroll.polyfill();
+
 // components
 import Header from './components/header';
 
@@ -7,7 +14,7 @@ import Home from './views/home';
 class App {
   initialize() {
     this.oldCurTop = 0;
-    this.components = [new Header()];
+    this.components = [ new Header() ];
 
     this.setComponents();
     this.setViews();
