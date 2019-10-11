@@ -1,4 +1,4 @@
-import './polyfill/foreach';
+import './polyfills/foreach';
 import 'whatwg-fetch';
 import 'promise-polyfill/src/polyfill';
 import smoothscroll from 'smoothscroll-polyfill';
