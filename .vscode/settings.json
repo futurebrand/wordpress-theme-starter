@@ -14,7 +14,9 @@
   },
   "scss.validate": false,
   "css.validate": false,
-  "eslint.autoFixOnSave": true,
   "eslint.run": "onSave",
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
