@@ -1,5 +1,4 @@
 {
-  "stylelint.enable": true,
   "editor.formatOnSave": true,
   "javascript.format.enable": true,
   "workbench.editor.enablePreview": false,

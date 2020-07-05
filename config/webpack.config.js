@@ -7,12 +7,13 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: [
+    'regenerator-runtime/runtime',
     path.resolve(__dirname, '../src/javascripts/app.js'),
-    path.resolve(__dirname, '../src/styles/style.scss')
+    path.resolve(__dirname, '../src/styles/style.scss'),
   ],
   output: {
     filename: 'app_bundle.js',
-    path: path.resolve(__dirname, '../build/')
+    path: path.resolve(__dirname, '../build/'),
   },
   devServer: {
     hot: true,
@@ -21,8 +22,8 @@ module.exports = {
     contentBase: path.resolve(__dirname, '../build/'),
     watchContentBase: true,
     headers: {
-      'Access-Control-Allow-Origin': '*'
-    }
+      'Access-Control-Allow-Origin': '*',
+    },
   },
   module: {
     rules: [
@@ -32,9 +33,9 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ '@babel/preset-env' ]
-          }
-        }
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
         test: /\.scss$/,
@@ -45,37 +46,37 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               config: {
-                path: path.resolve(__dirname, '../postcss.config.js')
-              }
-            }
+                path: path.resolve(__dirname, '../postcss.config.js'),
+              },
+            },
           },
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|otf|ttf|eot|woff)$/,
         use: [
           {
             loader: 'file-loader',
-            options: {}
-          }
-        ]
-      }
-    ]
+            options: {},
+          },
+        ],
+      },
+    ],
   },
   optimization: {
     minimizer:
       process.env.NODE_ENV === 'production'
-        ? [ new OptimizeCSSAssetsPlugin({}), new TerserPlugin() ]
-        : []
+        ? [new OptimizeCSSAssetsPlugin({}), new TerserPlugin()]
+        : [],
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      config: JSON.stringify(require(`./${process.env.NODE_ENV}.json`))
+      config: JSON.stringify(require(`./${process.env.NODE_ENV}.json`)),
     }),
     new MiniCssExtractPlugin({ filename: 'style.css' }),
-    new LiveReloadPlugin()
-  ]
+    new LiveReloadPlugin(),
+  ],
 };
