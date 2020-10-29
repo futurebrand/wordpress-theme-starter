@@ -1,56 +1,19 @@
 {
-  "extends": ["google", "prettier"],
-  "plugins": ["prettier", "compat"],
-  "settings": {
-    "polyfills": ["fetch", "promises"]
-  },
-  "parser": "babel-eslint",
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
   "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
     "es6": true
   },
   "rules": {
-    "strict": 0,
-    "compat/compat": 1,
-    "require-jsdoc": 0,
-    "quotes": 1,
-    "global-require": "off",
-    "new-cap": [
+    "prettier/prettier": [
       "error",
       {
-        "capIsNew": false
+        "singleQuote": true
       }
-    ],
-    "skipBlankLines": 0,
-    "func-call-spacing": ["error", "never"],
-    "space-before-function-paren": ["error", "never"],
-    "object-curly-spacing": ["error", "always"],
-    "multiline-ternary": 0,
-    "one-var": ["error", { "initialized": "never" }],
-    "guard-for-in": 0,
-    "no-invalid-this": 0,
-    "no-console": "error",
-    "no-debugger": 1,
-    "comma-spacing": [
-      "error",
-      {
-        "before": false,
-        "after": true
-      }
-    ],
-    "array-bracket-spacing": [
-      2,
-      "always",
-      {
-        "objectsInArrays": false
-      }
-    ],
-    "no-trailing-spaces": ["error", { "skipBlankLines": true }]
+    ]
   }
 }
